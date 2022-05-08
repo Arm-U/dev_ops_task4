@@ -10,7 +10,7 @@ apt-get -y install ansible
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "bento/ubuntu-18.04"
   config.vm.box_url = "Vagrantfile"
 
   #config.vm.provision :shell, path: 'requirements.sh'

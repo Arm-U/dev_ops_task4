@@ -1,19 +1,11 @@
 ---
 - hosts: all
   become: true
-  tasks:
-
-  - name: Update all packages in Debian-based machines
-    become: true
-    apt:
-      upgrade: yes
-      update_cache: yes
-      cache_valid_time: 86400 #One day          
+  tasks:          
 
   - name: install pip
-    easy_install:
-      name: pip
-      executable: easy_install3
+    apt:
+      name: python-pip
 
   - name: Install ansible 2.2
     pip:
@@ -27,3 +19,11 @@
       - python-scipy
       - python-numpy
       - python-pandas
+
+  - name: install pip3
+    apt: name=python3-pip state=present 
+
+  - name: Install required packages pip
+    pip: name={{ item }}
+    with_items:
+      - scikit-learn
